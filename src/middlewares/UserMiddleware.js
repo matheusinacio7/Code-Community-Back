@@ -5,7 +5,7 @@ const validateUser = (req, res, next) => {
   
   const { code, message } = UserSchema.validate({ name, email, password });
 
-  if (message) return res.status(code).json({ message: message });
+  if (message) return res.status(code).json({ message });
 
   next();
 };

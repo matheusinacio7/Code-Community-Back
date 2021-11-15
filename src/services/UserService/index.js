@@ -1,13 +1,15 @@
 const list = require('./list');
 const create = require('./create');
-const update = require('./update');
+const updatePsw = require('./updatePsw');
 const remove = require('./remove');
 const findById = require('./findById');
+const findByEmail = require('./findByEmail');
 
 module.exports = { 
   list,
   remove,
   create,
-  update,
-  getById,
+  updatePsw,
+  findById,
+  findByEmail,
 };

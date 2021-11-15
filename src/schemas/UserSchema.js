@@ -23,19 +23,19 @@ const validate = (name, email, password) => {
   const code = 422;
 
   switch (true) {
-    case empty(name): return { code, error: errors.EMPTY_NAME };
-    case empty(email): return { code, error: errors.EMPTY_EMAIL };
-    case empty(password): return { code, error: errors.EMPTY_PASSWORD };
+    case empty(name): return { code, message: errors.EMPTY_NAME };
+    case empty(email): return { code, message: errors.EMPTY_EMAIL };
+    case empty(password): return { code, message: errors.EMPTY_PASSWORD };
 
-    case isNotString(name): return { code, error: errors.TYPEOF_NAME };
-    case isNotString(email): return { code, error: errors.TYPEOF_EMAIL };
-    case isNotString(password): return { code, error: errors.TYPEOF_PASSWORD };
+    case isNotString(name): return { code, message: errors.TYPEOF_NAME };
+    case isNotString(email): return { code, message: errors.TYPEOF_EMAIL };
+    case isNotString(password): return { code, message: errors.TYPEOF_PASSWORD };
     
-    case isLength(name, 3): return { code, error: errors.LENGTH_NAME };
-    case isLength(email, 8): return { code, error: errors.LENGTH_EMAIL };
-    case isLength(password, 8): return { code, error: errors.LENGTH_PASSWORD };
+    case isLength(name, 3): return { code, message: errors.LENGTH_NAME };
+    case isLength(email, 8): return { code, message: errors.LENGTH_EMAIL };
+    case isLength(password, 8): return { code, message: errors.LENGTH_PASSWORD };
 
-    case !isEmail(email): return { code, error: errors.INVALID_EMAIL };
+    case !isEmail(email): return { code, message: errors.INVALID_EMAIL };
 
     default: return {};
   }

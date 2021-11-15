@@ -1,4 +1,4 @@
-const service = require('../../service/user');
+const service = require('../../service/UserService');
 
 module.exports = async (req, res) => {
   try {
@@ -10,10 +10,10 @@ module.exports = async (req, res) => {
       return res.status(404).end();
     }
 
-    return res.status(200).send(artist);
+    return res.status(200).send(user);
   } catch (err) {
     return res.status(500).send({
-      message: 'Sorry, we gt a problem. Please try again later.',
+      message: 'Sorry, we got a problem. Please try again later.',
       error: err,
     });
   }
