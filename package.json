@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/andrejaques/Code-Community-Back#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongodb": "^4.1.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

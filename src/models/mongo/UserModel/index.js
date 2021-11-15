@@ -1,6 +1,6 @@
 const _find = require('./find');
 const _create = require('./create');
-const _updatePsw = require('./update');
+const _updatePsw = require('./updatePsw');
 const _remove = require('./remove');
 const _findById = require('./findById');
 const _findByEmail = require('./findByEmail');
