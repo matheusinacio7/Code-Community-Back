@@ -19,8 +19,11 @@
   },
   "homepage": "https://github.com/andrejaques/Code-Community-Back#readme",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "mongodb": "^4.1.4"
+    "mongodb": "^4.1.4",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.9.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

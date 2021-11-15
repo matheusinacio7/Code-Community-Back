@@ -1,14 +1,16 @@
 const express = require('express');
+require('dotenv').config();
+
 const User = require('./controllers/UserController');
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 const app = express();
 
 app.use(express.json());
 
 // endpoints
-app.use('/', (req, res) => {
+app.get('/', (req, res) => {
     res.status(200).send('Welcome to Code Community API!');
 });
 

@@ -1,7 +1,7 @@
 const { MongoClient } = require('mongodb');
 
-const MONGO_URL = 'mongodb://localhost:27017';
-const MONGO_DB_NAME = 'codecommunity';
+const MONGO_URL = process.env.MONGO_URL;
+const MONGO_DB_NAME = process.env.MONGO_DB_NAME;
 
 // Singleton
 
