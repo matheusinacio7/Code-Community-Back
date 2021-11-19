@@ -1,4 +1,4 @@
-const UserSchema = require('../schemas/UserSchema');
+const UserSchema = require('../schemas/users');
 
 const validateUser = (req, res, next) => {
   const { name, email, password } = req.body;

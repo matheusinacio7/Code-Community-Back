@@ -1,19 +1,12 @@
-const express = require('express');
+const { app } = require('./app');
 require('dotenv').config();
 
-const User = require('./controllers/UserController');
+const port = process.env.PORT;
 
-const PORT = process.env.PORT;
-
-const app = express();
-
-app.use(express.json());
-
-// endpoints
 app.get('/', (req, res) => {
-    res.status(200).send('Welcome to Code Community API!');
+  res.status(200).send('Welcome to Code Community API!');
 });
 
-app.use('/user', User);
-
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
