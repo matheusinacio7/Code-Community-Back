@@ -1,28 +1,22 @@
+require('dotenv').config();
 const { MongoClient } = require('mongodb');
 
-const MONGO_URL = process.env.MONGO_URL;
-const MONGO_DB_NAME = process.env.MONGO_DB_NAME;
+const MONGO_DB_URL = `mongodb://${process.env.HOST || 'mongodb'}:27017/CodeCommunity`;
+const DB_NAME = 'CodeCommunity';
 
-// Singleton
-
-let connection = null;
-
-const DBconnection = async () => {
-  try {
-    return connection ?
-      connection :
-      connection = (await MongoClient.connect(
-        MONGO_URL,
-        {
-          useNewUrlParser: true,
-          useUnifiedTopology: true
-        }
-      )).db(MONGO_DB_NAME);
-  } catch (err) {
-    console.log("MONGO DB ERROR:");
-    console.error(err.message);
-    process.exit(1);
-  }
+const OPTIONS = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 };
 
-module.exports = DBconnection;
+let db = null;
+
+const connection = () => (db
+    ? Promise.resolve(db)
+    : MongoClient.connect(MONGO_DB_URL, OPTIONS)
+    .then((conn) => {
+      db = conn.db(DB_NAME);
+      return db;
+    }));
+
+module.exports = connection;

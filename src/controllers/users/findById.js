@@ -1,4 +1,5 @@
-const service = require('../../services/user');
+const { StatusCodes } = require('http-status-codes');
+const service = require('../../services/users');
 
 module.exports = async (req, res) => {
   try {
@@ -7,12 +8,12 @@ module.exports = async (req, res) => {
     const user = await service.findById(id);
 
     if (!user) {
-      return res.status(404).end();
+      return res.status(StatusCodes.NOT_FOUND).end();
     }
 
-    return res.status(200).send(user);
+    return res.status(StatusCodes.OK).send(user);
   } catch (err) {
-    return res.status(500).send({
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       message: 'Sorry, we got a problem. Please try again later.',
       error: err,
     });

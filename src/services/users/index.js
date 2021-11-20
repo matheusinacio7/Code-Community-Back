@@ -7,8 +7,8 @@ const findByEmail = require('./findByEmail');
 
 module.exports = { 
   list,
-  remove,
   create,
+  remove,
   updatePsw,
   findById,
   findByEmail,
