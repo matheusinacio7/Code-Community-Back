@@ -1,20 +1,13 @@
 const express = require('express');
 const { validateUser } = require('../../middlewares/UserMiddleware');
 
-const list = require('./list');
-const findById = require('./findById');
-const findByEmail = require('./findByEmail');
-const create = require('./create');
-const updatePsw = require('./updatePsw');
-const remove = require('./remove');
-
 const router = express.Router({ mergeParams: true });
 
-router.get('/', list);
-router.post('/', validateUser, create);
-router.get('/id/:id', findById);
-router.get('/email/:email', findByEmail);
-router.put('/psw/:psw', updatePsw);
-router.delete('/id/:id', remove);
+router.get('/', require('./list'));
+router.post('/', require('./create'));
+router.get('/id/:id', require('./findById'));
+router.get('/email/:email', require('./findByEmail'));
+router.put('/psw/:psw', require('./updatePsw'));
+router.delete('/id/:id', require('./remove'));
 
 module.exports = router;

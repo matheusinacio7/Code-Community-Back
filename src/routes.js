@@ -1,7 +1,7 @@
-const { Router } = require('express');
+const express = require('express');
 
-const router = Router({ mergeParams: true });
+const router = express.Router({ mergeParams: true });
 
 router.use('/users', require('./controllers/users'));
 
-module.exports = { router };
+module.exports = router;

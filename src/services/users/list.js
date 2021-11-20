@@ -1,5 +1,6 @@
-const User = require('../../models/mongo/user')('user');
+const User = require('../../models/mongo/user')('users');
 
 module.exports = async () => {
-  return User.list();
+  const list = await User.list({});
+  return { list }
 };
