@@ -14,7 +14,8 @@ module.exports = async ({
   isPremium,
   checkedEmail,
   checkedRole,
-  loading, }) => {
+  loading
+}) => {
   const userIsValid = userValidation
     .validate({ firstName, lastName, role, email, password });
 
