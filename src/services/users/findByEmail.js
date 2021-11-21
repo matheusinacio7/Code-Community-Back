@@ -1,5 +1,3 @@
-const User = require('../../models/mongo/user')('user');
+const User = require('../../models/mongo/user')('users');
 
-module.exports = async (email) => {
-  return User.findByEmail(email);
-};
+module.exports = async (email) => User.findByEmail(email);

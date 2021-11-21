@@ -12,6 +12,6 @@ module.exports = (collection) => {
     create: (doc) => _create(collection, doc),
     updatePsw: (doc) => _updatePsw(collection, doc),
     findById: (id) => _findById(collection, id),
-    findByEmail: (id) => _findByEmail(collection, id),
+    findByEmail: (email) => _findByEmail(collection, email),
   } 
 };
