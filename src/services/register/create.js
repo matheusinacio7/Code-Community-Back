@@ -1,25 +1,14 @@
-const { ObjectId } = require('mongodb');
 const User = require('../../models/mongo/user')('users');
 const { userValidation } = require('../../schemas/users');
 
-module.exports = async (id, {
+module.exports = async ({
   email,
   firstName,
   lastName,
   role,
   password,
   middleName,
-  token,
-  theme,
-  error,
-  isPremium,
-  checkedEmail,
-  checkedRole,
 }) => {
-  if (!ObjectId.isValid(id)) {
-    return { err: { message: 'Wrong id format', code: 'invalid_data' } };
-  }
-
   const userIsValid = userValidation
     .validate({ firstName, lastName, role, email, password });
 
@@ -27,21 +16,14 @@ module.exports = async (id, {
     return { error: { message: userIsValid.error.message } }
   }
 
-  const userUpdate = await User
-    .updatePsw({
-      id,
+  const registerCreate = await User
+    .create({
       firstName,
       lastName,
       role,
       email,
       password,
       middleName,
-      token,
-      theme,
-      error,
-      isPremium,
-      checkedEmail,
-      checkedRole,
     });
-  return userUpdate;
+  return registerCreate;
 };

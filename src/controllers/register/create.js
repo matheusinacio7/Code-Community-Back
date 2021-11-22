@@ -1,4 +1,4 @@
-const service = require('../../services/users');
+const service = require('../../services/register');
 
 module.exports = async (req, res, next) => {
   try {
@@ -9,16 +9,9 @@ module.exports = async (req, res, next) => {
       email,
       password,
       middleName,
-      token,
-      theme,
-      error,
-      isPremium,
-      checkedEmail,
-      checkedRole,
-      loading,
     } = req.body;
 
-    const newUser = await service
+    const registerUser = await service
       .create({
         firstName,
         lastName,
@@ -26,22 +19,15 @@ module.exports = async (req, res, next) => {
         email,
         password,
         middleName,
-        token,
-        theme,
-        error,
-        isPremium,
-        checkedEmail,
-        checkedRole,
-        loading,
       });
 
-    if (newUser.err) {
+    if (registerUser.err) {
       return next({
-        err: { message: newUser.error.message }
+        err: { message: registerUser.error.message }
       })
     }
 
-    return res.status(201).json(newUser);
+    return res.status(201).json(registerUser);
   } catch (err) {
     return res.status(500).json({
       message: 'Sorry, we got a problem. Please try again later.',
