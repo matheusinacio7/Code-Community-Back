@@ -1,23 +1,49 @@
+const { StatusCodes } = require('http-status-codes');
 const service = require('../../services/users');
 
 module.exports = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const {
+      firstName,
+      lastName,
+      role,
+      email,
+      password,
+      middleName,
+      token,
+      theme,
+      error,
+      isPremium,
+      checkedEmail,
+      checkedRole,
+      loading,
+    } = req.body;
+    const { id } = req.params;
 
-    if (!password || !email) {
-      return res.status(400).send({ message: 'must inform password and email' });
-    }
+    const update = await service
+      .updatePsw(id, {
+        firstName,
+        lastName,
+        role,
+        email,
+        password,
+        middleName,
+        token,
+        theme,
+        error,
+        isPremium,
+        checkedEmail,
+        checkedRole,
+        loading,
+      });
 
-    const user = await service.findByEmail(email);
+      if (update.err) {
+        return next({
+          err: { message: update.error.message }
+        })
+      }
 
-    if (!user) {
-      return res.status(404).end();
-    }
-
-    const newUser = { ...user, password };
-    await service.updatePsw(newUser);
-
-    return res.status(201).send(newUser);
+    return res.status(StatusCodes.OK).send(update);
   } catch (err) {
     return res.status(500).send({
       message: 'Sorry, we got a problem. Please try again later.',

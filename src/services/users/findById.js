@@ -1,5 +1,3 @@
-const User = require('../../models/mongo/user')('user');
+const User = require('../../models/mongo/user')('users');
 
-module.exports = async (id) => {
-  return User.findById(id);
-};
+module.exports = (id) => User.findById(id);
