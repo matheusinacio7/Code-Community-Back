@@ -8,14 +8,11 @@ module.exports = async (req, res, next) => {
       role,
       email,
       password,
-      middleName,
-      token,
       theme,
       error,
       isPremium,
       checkedEmail,
       checkedRole,
-      loading,
     } = req.body;
 
     const newUser = await service
@@ -25,14 +22,11 @@ module.exports = async (req, res, next) => {
         role,
         email,
         password,
-        middleName,
-        token,
         theme,
         error,
         isPremium,
         checkedEmail,
         checkedRole,
-        loading,
       });
 
     if (newUser.err) {

@@ -7,7 +7,6 @@ module.exports = async ({
   lastName,
   role,
   password,
-  middleName,
 }) => {
   const userIsValid = userValidation
     .validate({ firstName, lastName, role, email, password });
@@ -23,7 +22,6 @@ module.exports = async ({
       role,
       email,
       password,
-      middleName,
     });
   return registerCreate;
 };

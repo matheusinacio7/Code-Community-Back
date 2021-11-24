@@ -9,14 +9,11 @@ module.exports = async (req, res) => {
       role,
       email,
       password,
-      middleName,
-      token,
       theme,
       error,
       isPremium,
       checkedEmail,
       checkedRole,
-      loading,
     } = req.body;
     const { id } = req.params;
 
@@ -27,14 +24,11 @@ module.exports = async (req, res) => {
         role,
         email,
         password,
-        middleName,
-        token,
         theme,
         error,
         isPremium,
         checkedEmail,
         checkedRole,
-        loading,
       });
 
       if (update.err) {

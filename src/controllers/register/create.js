@@ -8,7 +8,6 @@ module.exports = async (req, res, next) => {
       role,
       email,
       password,
-      middleName,
     } = req.body;
 
     const registerUser = await service
@@ -18,7 +17,6 @@ module.exports = async (req, res, next) => {
         role,
         email,
         password,
-        middleName,
       });
 
     if (registerUser.err) {
