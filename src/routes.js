@@ -9,7 +9,7 @@ const router = express.Router({ mergeParams: true });
 
 router.get('/test', jwtAuth, postTest);
 router.use('/users', jwtAuth, users);
-router.use('/register', jwtAuth, register);
-router.use('/login', jwtAuth, login);
+router.use('/register', register);
+router.use('/login', login);
 
 module.exports = router;
