@@ -10,7 +10,7 @@ module.exports = async ({
   middleName,
 }) => {
   const userIsValid = userValidation
-    .validate({ firstName, lastName, role, email, password });
+    .validate({ firstName, lastName, email, password });
 
   if (userIsValid.error) {
     return { error: { message: userIsValid.error.message } }
