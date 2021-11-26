@@ -1,7 +1,7 @@
 const { app } = require('./app');
 require('dotenv').config();
 
-const port = 3001;
+const port = 9000;
 
 app.get('/', (_req, res) => {
   res.status(200).send('Welcome to Code Community API!');
