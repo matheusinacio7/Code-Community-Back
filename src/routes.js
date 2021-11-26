@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const jwtAuth = require('./auth/validateJWT');
 const postTest = require('./controllers/postsTest');
 const users = require('./controllers/users')

@@ -28,8 +28,10 @@ module.exports = async (req, res, next) => {
       algorithm: 'HS256',
     };
 
+    const { _id, ...params } = user;
+
     const token = jwt.sign({ data: user }, secret, jwtConfig);
-    return res.status(StatusCodes.OK).json({ token });
+    return res.status(StatusCodes.OK).json({ user: params, token });
   } catch (e) {
     next(e);
   }
