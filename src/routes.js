@@ -8,9 +8,8 @@ const login = require('./controllers/login');
 
 const router = express.Router({ mergeParams: true });
 
-// router.use(cors());
 router.get('/test', jwtAuth, postTest);
-router.use('/users',  users);
+router.use('/users', jwtAuth, users);
 router.use('/register', register);
 router.use('/login', login);
 
