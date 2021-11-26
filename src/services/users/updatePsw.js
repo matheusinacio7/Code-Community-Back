@@ -4,8 +4,7 @@ const { userValidation } = require('../../schemas/users');
 
 module.exports = async (id, {
   email,
-  firstName,
-  lastName,
+  name,
   role,
   password,
   theme,
@@ -28,8 +27,7 @@ module.exports = async (id, {
   const userUpdate = await User
     .updatePsw({
       id,
-      firstName,
-      lastName,
+      name,
       role,
       email,
       password,

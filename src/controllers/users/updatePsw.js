@@ -4,8 +4,7 @@ const service = require('../../services/users');
 module.exports = async (req, res) => {
   try {
     const {
-      firstName,
-      lastName,
+      name,
       role,
       email,
       password,
@@ -19,8 +18,7 @@ module.exports = async (req, res) => {
 
     const update = await service
       .updatePsw(id, {
-        firstName,
-        lastName,
+        name,
         role,
         email,
         password,

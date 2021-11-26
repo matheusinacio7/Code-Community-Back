@@ -3,8 +3,7 @@ const { userValidation } = require('../../schemas/users');
 
 module.exports = async ({
   email,
-  firstName,
-  lastName,
+  name,
   role,
   password,
   theme,
@@ -22,10 +21,9 @@ module.exports = async ({
 
   const userCreate = await User
     .create({
-      firstName,
-      lastName,
-      role,
       email,
+      name,
+      role,
       password,
       theme,
       error,

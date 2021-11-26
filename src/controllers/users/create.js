@@ -3,8 +3,7 @@ const service = require('../../services/users');
 module.exports = async (req, res, next) => {
   try {
     const {
-      firstName,
-      lastName,
+      name,
       role,
       email,
       password,
@@ -17,8 +16,7 @@ module.exports = async (req, res, next) => {
 
     const newUser = await service
       .create({
-        firstName,
-        lastName,
+        name,
         role,
         email,
         password,

@@ -2,9 +2,8 @@ const User = require('../../models/mongo/user')('users');
 const { userValidation } = require('../../schemas/users');
 
 module.exports = async ({
+  name,
   email,
-  firstName,
-  lastName,
   role,
   password,
 }) => {
@@ -17,10 +16,9 @@ module.exports = async ({
 
   const registerCreate = await User
     .create({
-      firstName,
-      lastName,
-      role,
+      name,
       email,
+      role,
       password,
     });
   return registerCreate;
