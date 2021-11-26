@@ -4,7 +4,7 @@ const service = require('../services/users');
 
 const secret = process.env.JWT_SECRET;
 
-module.exports = async (req, res, next) => {
+const jwtAuth = async (req, res, next) => {
   const token = req.headers['authorization'];
 
   if (!token) {
@@ -18,7 +18,7 @@ module.exports = async (req, res, next) => {
     if (!user) {
       return res
         .status(401)
-        .json({ message: 'Erro ao procurar usuário do token.' });
+        .json({ message: 'No registered user' });
     }
 
     req.user = user;
@@ -27,5 +27,6 @@ module.exports = async (req, res, next) => {
   } catch (err) {
     return res.status(StatusCodes.UNAUTHORIZED).json({ message: err.message });
   }
+};
 
-}
+module.exports = jwtAuth;

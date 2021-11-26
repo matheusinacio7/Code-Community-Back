@@ -2,15 +2,13 @@ const User = require('../../models/mongo/user')('users');
 const { userValidation } = require('../../schemas/users');
 
 module.exports = async ({
+  name,
   email,
-  firstName,
-  lastName,
   role,
   password,
-  middleName,
 }) => {
   const userIsValid = userValidation
-    .validate({ firstName, lastName, role, email, password });
+    .validate({ name, role, email, password });
 
   if (userIsValid.error) {
     return { error: { message: userIsValid.error.message } }
@@ -18,12 +16,10 @@ module.exports = async ({
 
   const registerCreate = await User
     .create({
-      firstName,
-      lastName,
-      role,
+      name,
       email,
+      role,
       password,
-      middleName,
     });
   return registerCreate;
 };

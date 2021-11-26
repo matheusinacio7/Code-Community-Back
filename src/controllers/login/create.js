@@ -1,6 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 const service = require('../../services/login');
-const findEmail = require('../../services/users');
+const users = require('../../services/users');
 const jwt = require('jsonwebtoken');
 
 const secret = process.env.JWT_SECRET;
@@ -15,7 +15,7 @@ module.exports = async (req, res, next) => {
       });
     }
 
-    const user = await findEmail.findByEmail(email);
+    const user = await users.findByEmail(email);
 
     if (!user || user.password !== password) {
       return res.status(StatusCodes.UNAUTHORIZED).json({
@@ -28,8 +28,10 @@ module.exports = async (req, res, next) => {
       algorithm: 'HS256',
     };
 
+    const { _id, ...params } = user;
+
     const token = jwt.sign({ data: user }, secret, jwtConfig);
-    return res.status(StatusCodes.OK).json({ token });
+    return res.status(StatusCodes.OK).json({ user: params, token });
   } catch (e) {
     next(e);
   }

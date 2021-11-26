@@ -9,7 +9,7 @@ module.exports = async (collection, entity) => {
     .findOneAndUpdate(
       { _id: new ObjectId(id) },
       { $set: { ...dataToSet } },
-      { returnDocument: 'after' }, // source: https://stackoverflow.com/questions/24747189/update-and-return-document-in-mongodb
+      { returnDocument: 'after' },
   );
 
   return updated;

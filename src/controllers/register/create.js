@@ -3,22 +3,18 @@ const service = require('../../services/register');
 module.exports = async (req, res, next) => {
   try {
     const {
-      firstName,
-      lastName,
+      name,
       role,
       email,
       password,
-      middleName,
     } = req.body;
 
     const registerUser = await service
       .create({
-        firstName,
-        lastName,
+        name,
         role,
         email,
         password,
-        middleName,
       });
 
     if (registerUser.err) {

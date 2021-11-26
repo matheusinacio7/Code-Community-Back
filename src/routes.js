@@ -1,11 +1,17 @@
 const express = require('express');
 const cors = require('cors');
+const jwtAuth = require('./auth/validateJWT');
+const postTest = require('./controllers/postsTest');
+const users = require('./controllers/users')
+const register = require('./controllers/register');
+const login = require('./controllers/login');
 
 const router = express.Router({ mergeParams: true });
 
-router.get('/posts', require('./auth/validateJWT'), require('./controllers/postsTest'))
-router.use('/users', require('./controllers/users'));
-router.use('/register', require('./controllers/register'));
-router.use('/login', require('./controllers/login'));
+// router.use(cors());
+router.get('/test', jwtAuth, postTest);
+router.use('/users',  users);
+router.use('/register', register);
+router.use('/login', login);
 
 module.exports = router;

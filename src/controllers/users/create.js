@@ -3,36 +3,28 @@ const service = require('../../services/users');
 module.exports = async (req, res, next) => {
   try {
     const {
-      firstName,
-      lastName,
+      name,
       role,
       email,
       password,
-      middleName,
-      token,
       theme,
       error,
       isPremium,
       checkedEmail,
       checkedRole,
-      loading,
     } = req.body;
 
     const newUser = await service
       .create({
-        firstName,
-        lastName,
+        name,
         role,
         email,
         password,
-        middleName,
-        token,
         theme,
         error,
         isPremium,
         checkedEmail,
         checkedRole,
-        loading,
       });
 
     if (newUser.err) {
