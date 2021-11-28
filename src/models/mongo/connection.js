@@ -1,7 +1,7 @@
-require('dotenv').config();
 const { MongoClient } = require('mongodb');
+require('dotenv').config();
 
-const MONGO_DB_URL = `mongodb://${process.env.HOST || 'mongodb'}:27017/CodeCommunity`;
+const MONGO_DB_URL = `mongodb://${process.env.HOST || 'localhost'}:27017/`;
 const DB_NAME = 'CodeCommunity';
 
 const OPTIONS = {
@@ -9,6 +9,7 @@ const OPTIONS = {
   useUnifiedTopology: true,
 };
 
+// Singleton
 let db = null;
 
 const connection = () => (db

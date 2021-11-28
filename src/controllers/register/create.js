@@ -4,9 +4,13 @@ module.exports = async (req, res, next) => {
   try {
     const {
       name,
-      role,
+      role = 'none',
       email,
       password,
+      theme = 'light',
+      isPremium = false,
+      checkedEmail = false,
+      checkedRole = false,
     } = req.body;
 
     const registerUser = await service
@@ -15,12 +19,14 @@ module.exports = async (req, res, next) => {
         role,
         email,
         password,
+        theme,
+        isPremium,
+        checkedEmail,
+        checkedRole,
       });
 
-    if (registerUser.err) {
-      return next({
-        err: { message: registerUser.error.message }
-      })
+    if (registerUser.error) {
+      return res.status(406).json({ error: { message: registerUser.error.message }});
     }
 
     return res.status(201).json(registerUser);

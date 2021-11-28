@@ -1,11 +1,16 @@
+const Register = require('../../models/mongo/register')('users');
 const User = require('../../models/mongo/user')('users');
-const { userValidation } = require('../../schemas/users');
+const { userValidation } = require('../../schemas/register');
 
 module.exports = async ({
   name,
-  email,
   role,
+  email,
   password,
+  theme,
+  isPremium,
+  checkedEmail,
+  checkedRole,
 }) => {
   const userIsValid = userValidation
     .validate({ name, role, email, password });
@@ -14,12 +19,23 @@ module.exports = async ({
     return { error: { message: userIsValid.error.message } }
   }
 
-  const registerCreate = await User
+  const userAlreadyExists = await User.findByEmail(email);
+
+  if (userAlreadyExists) {
+    return { error: { message: 'Email already exists' } }
+  }
+
+  const registerCreate = await Register
     .create({
       name,
       email,
       role,
       password,
+      theme,
+      isPremium,
+      checkedEmail,
+      checkedRole,
     });
+    
   return registerCreate;
 };

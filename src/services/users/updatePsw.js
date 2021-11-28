@@ -8,7 +8,6 @@ module.exports = async (id, {
   role,
   password,
   theme,
-  error,
   isPremium,
   checkedEmail,
   checkedRole,
@@ -18,7 +17,7 @@ module.exports = async (id, {
   }
 
   const userIsValid = userValidation
-    .validate({ firstName, lastName, role, email, password });
+    .validate({ name, role, email, password });
 
   if (userIsValid.error) {
     return { error: { message: userIsValid.error.message } }
@@ -32,7 +31,6 @@ module.exports = async (id, {
       email,
       password,
       theme,
-      error,
       isPremium,
       checkedEmail,
       checkedRole,
