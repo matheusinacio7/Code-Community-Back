@@ -26,7 +26,7 @@ module.exports = async (req, res, next) => {
       });
 
     if (registerUser.error) {
-      return res.status(406).json({ error: { message: registerUser.error.message }});
+      return res.status(406).json({ error: registerUser.error.message });
     }
 
     return res.status(201).json(registerUser);

@@ -1,5 +1,4 @@
 const { StatusCodes } = require('http-status-codes');
-const service = require('../../services/login');
 const users = require('../../services/users');
 const jwt = require('jsonwebtoken');
 
