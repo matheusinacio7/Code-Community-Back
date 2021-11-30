@@ -22,7 +22,7 @@ module.exports = async ({
   const userAlreadyExists = await User.findByEmail(email);
 
   if (userAlreadyExists) {
-    return { error: { message: 'Email already exists' } }
+    return { error: { message: 'Email already exists' } };
   }
 
   const registerCreate = await Register

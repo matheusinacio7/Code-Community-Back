@@ -5,10 +5,10 @@ module.exports = async (_req, res, next) => {
     const users = await service.list();
 
     if (!users) {
-      return res.stauts(404).end();
+      return res.status(404).end();
     }
 
-    return res.status(200).send(users);
+    return res.status(users).send(users);
   } catch (err) {
     next(err);
   }

@@ -1,7 +1,5 @@
-const _create = require('../register/create');
+const _create = require('./create');
 
-module.exports = (collection) => { 
-  return {
-    create: (doc) => _create(collection, doc),
-  } 
-};
+module.exports = (collection) => ({
+  create: (doc) => _create(collection, doc),
+});
