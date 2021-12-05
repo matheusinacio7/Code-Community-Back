@@ -2,7 +2,7 @@ const service = require('../../services/register');
 
 const SERVER_FAILURE = 'Sorry, we got a problem. Please try again later.';
 
-module.exports = async (req, res, next) => {
+module.exports = async (req, res) => {
   try {
     const {
       name,
@@ -28,7 +28,7 @@ module.exports = async (req, res, next) => {
       });
 
     if (registerUser.error) {
-      return res.status(406).json({ error: registerUser.error.message });
+      return res.status(403).json({ error: registerUser.error.message });
     }
 
     return res.status(201).json(registerUser);
