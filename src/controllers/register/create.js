@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
     return res.status(201).json(registerUser);
   } catch (err) {
     return res.status(500).json({
-      message: SERVER_FAILURE,
+      error : SERVER_FAILURE,
     });
   }
 };

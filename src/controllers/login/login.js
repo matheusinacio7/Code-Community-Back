@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const secret = process.env.JWT_SECRET;
 
-module.exports = async (req, res, next) => {
+module.exports = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -32,6 +32,8 @@ module.exports = async (req, res, next) => {
     const token = jwt.sign({ data: user }, secret, jwtConfig);
     return res.status(StatusCodes.OK).json({ user: params, token });
   } catch (e) {
-    next(e);
+    return res.status(500).json({
+      error : SERVER_FAILURE,
+    });
   }
 }
