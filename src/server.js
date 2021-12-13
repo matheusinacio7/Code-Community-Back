@@ -1,9 +1,10 @@
 const { app } = require('./app');
+const firewall = require('./middlewares/firewall');
 require('dotenv').config();
 
 const port = process.env.PORT || 3001;
 
-app.get('/', (_req, res) => {
+app.get('/', firewall, (_req, res) => {
   res.status(200).send('Welcome to Code Community API!');
 });
 
