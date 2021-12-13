@@ -13,6 +13,8 @@ app.use(cookieParser());
 
 app.use(express.static(pathUploads));
 
+app.use(express.static(pathUploads));
+
 app.use(router);
 
 module.exports = { app };

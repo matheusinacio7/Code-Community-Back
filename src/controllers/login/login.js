@@ -7,6 +7,8 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 
 const SERVER_FAILURE = 'Sorry, we got a problem. Please try again later.';
 
+const SERVER_FAILURE = 'Sorry, we got a problem. Please try again later.';
+
 module.exports = async (req, res) => {
   const { email, password } = req.body;
   const { ccToken } = req.cookies;
