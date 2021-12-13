@@ -1,41 +1,53 @@
+const dayjs = require('dayjs');
 const { StatusCodes } = require('http-status-codes');
-const users = require('../../services/users');
-const jwt = require('jsonwebtoken');
+const { loginWithPassword, loginWithToken } =  require('../../services/login');
 
-const secret = process.env.JWT_SECRET;
+const INVALID_CREDENTIALS = 'Email and password are required';
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
+const SERVER_FAILURE = 'Sorry, we got a problem. Please try again later.';
 
 const SERVER_FAILURE = 'Sorry, we got a problem. Please try again later.';
 
 module.exports = async (req, res) => {
-  try {
-    const { email, password } = req.body;
+  const { email, password } = req.body;
+  const { ccToken } = req.cookies;
 
-    if (!email || !password) {
-      return res.status(StatusCodes.BAD_REQUEST).json({
-        message: 'Email and password are required',
+  if (email && ccToken) {
+    const User = await loginWithToken(email, ccToken);
+
+    if (User.error) {
+      return res.status(User.error.statusCode).json({
+        message: User.error.message,
       });
     }
 
-    const user = await users.findByEmail(email);
+    const { statusCode, user } = User;
 
-    if (!user || user.password !== password) {
-      return res.status(StatusCodes.UNAUTHORIZED).json({
-        message: 'Invalid email or password',
-      });
-    }
-
-    const jwtConfig = {
-      expiresIn: '7d',
-      algorithm: 'HS256',
-    };
-
-    const { _id, ...params } = user;
-
-    const token = jwt.sign({ data: user }, secret, jwtConfig);
-    return res.status(StatusCodes.OK).json({ user: params, token });
-  } catch (e) {
-    return res.status(500).json({
-      error : SERVER_FAILURE,
-    });
+    return res.status(StatusCodes.OK).json(user);
   }
+
+  if ( email && password ) {
+    const User = await loginWithPassword(email, password);
+
+    if ( User.error ) {
+      return res.status( User.error.statusCode).json({
+        message: User.error.message,
+      });
+    }
+
+    const { statusCode, user, token } = User;
+    
+    return res.status(statusCode)
+      .cookie('ccToken', token, {
+        secure: NODE_ENV !== "development",
+        httpOnly: true,
+        expires: dayjs().add(7, 'day').toDate(),
+      })
+      .json(user)
+  }
+  
+  return res.status(StatusCodes.BAD_REQUEST).json({
+    message: INVALID_CREDENTIALS,
+  })
 }
