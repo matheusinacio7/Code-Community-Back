@@ -11,6 +11,7 @@ module.exports = async ({
   isPremium,
   checkedEmail,
   checkedRole,
+  image,
 }) => {
   const userIsValid = userValidation
     .validate({ name, role, email, password });
@@ -35,6 +36,7 @@ module.exports = async ({
       isPremium,
       checkedEmail,
       checkedRole,
+      image,
     });
     
   return registerCreate;

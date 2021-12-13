@@ -13,6 +13,7 @@ module.exports = async (req, res) => {
       isPremium = false,
       checkedEmail = false,
       checkedRole = false,
+      image = '',
     } = req.body;
 
     const registerUser = await service
@@ -25,6 +26,7 @@ module.exports = async (req, res) => {
         isPremium,
         checkedEmail,
         checkedRole,
+        image,
       });
 
     if (registerUser.error) {

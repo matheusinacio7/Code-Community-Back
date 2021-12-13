@@ -3,6 +3,7 @@ const updatePsw = require('./updatePsw');
 const remove = require('./remove');
 const findById = require('./findById');
 const findByEmail = require('./findByEmail');
+const upload = require('./upload');
 
 module.exports = { 
   list,
@@ -10,4 +11,5 @@ module.exports = {
   updatePsw,
   findById,
   findByEmail,
+  upload,
 };

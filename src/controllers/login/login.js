@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');
 
 const secret = process.env.JWT_SECRET;
 
+const SERVER_FAILURE = 'Sorry, we got a problem. Please try again later.';
+
 module.exports = async (req, res) => {
   try {
     const { email, password } = req.body;
