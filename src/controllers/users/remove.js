@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
         
     return res.status(StatusCodes.OK).send(remove);
   } catch (err) {
-    return res.status(500).send({
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       message: 'Sorry, we got a problem. Please try again later.',
       error: err,
     });
