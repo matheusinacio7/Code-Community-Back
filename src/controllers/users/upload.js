@@ -5,7 +5,7 @@ module.exports = async (req, res, _next) => {
 
   try {
     if (req.file) {
-      const updated = await service.updatePsw(id, {
+      const updated = await service.upload(id, {
         image: `/${req.file.filename}`,
       });
       return res.status(200).json(updated);
