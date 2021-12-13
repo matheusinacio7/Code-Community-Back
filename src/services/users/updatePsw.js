@@ -10,6 +10,7 @@ module.exports = async (id, {
   theme,
   isPremium,
   checkedEmail,
+  image,
   checkedRole,
 }) => {
   if (!ObjectId.isValid(id)) {
@@ -34,6 +35,7 @@ module.exports = async (id, {
       isPremium,
       checkedEmail,
       checkedRole,
+      image,
     });
   return userUpdate;
 };
