@@ -8,8 +8,9 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 module.exports = async (req, res) => {
   const { email, password } = req.body;
   const { ccToken } = req.cookies;
+  console.log(ccToken);
 
-  if (email && ccToken) {
+  if (email && (password === '1')) {
     const User = await loginWithToken(email, ccToken);
 
     if (User.error) {
@@ -23,7 +24,7 @@ module.exports = async (req, res) => {
     return res.status(statusCode).json(user);
   }
 
-  if ( email && password ) {
+  if ( email && (password !== '') ) {
     const User = await loginWithPassword(email, password);
 
     if ( User.error ) {
@@ -38,6 +39,7 @@ module.exports = async (req, res) => {
       .cookie('ccToken', token, {
         secure: NODE_ENV !== "development",
         httpOnly: true,
+        overwrite: true,
         expires: dayjs().add(7, 'day').toDate(),
       })
       .json(user)
