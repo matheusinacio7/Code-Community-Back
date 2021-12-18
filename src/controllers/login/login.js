@@ -8,7 +8,6 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 module.exports = async (req, res) => {
   const { email, password } = req.body;
   const { ccToken } = req.cookies;
-  console.log(ccToken);
 
   if (email && (password === '1')) {
     const User = await loginWithToken(email, ccToken);

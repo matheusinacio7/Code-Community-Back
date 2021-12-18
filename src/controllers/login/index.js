@@ -1,9 +1,8 @@
 const express = require('express');
-const cors = require('cors');
 const login = require('./login')
 
 const router = express.Router({ mergeParams: true });
 
-router.post('/', cors(), login);
+router.post('/', login);
 
 module.exports = router;

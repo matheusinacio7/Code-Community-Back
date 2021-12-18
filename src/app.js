@@ -7,7 +7,12 @@ const cookieParser = require('cookie-parser');
 const pathUploads = path.join(__dirname, '..', 'uploads');
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: ['http://localhost:3000', 'http://localhost:3001'],
+  credentials: true,
+}
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
